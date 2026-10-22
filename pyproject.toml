@@ -34,6 +34,11 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["build>=1.0", "twine>=5.0"]
 
+[project.urls]
+Homepage = "https://github.com/Re4lLife/Termigent"
+Repository = "https://github.com/Re4lLife/Termigent"
+Issues = "https://github.com/Re4lLife/Termigent/issues"
+
 [project.scripts]
 termigent = "termigent.cli:main"
 
