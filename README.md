@@ -39,7 +39,9 @@ termigent --host 0.0.0.0 --port 8000
 
 The MCP endpoint is `http://<host>:<port>/sse`.
 
+## Preview
 
+![Termigent terminal showing the green prompt, white command, and light-gray output](https://raw.githubusercontent.com/Re4lLife/Termigent/main/assets/terminal.png)
 
 ## Tool
 
