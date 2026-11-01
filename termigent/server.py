@@ -4,6 +4,7 @@ import subprocess
 import sys
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 GREEN = "\033[32m"
 WHITE = "\033[97m"
@@ -45,6 +46,13 @@ def run_command(command: str) -> str:
     return output
 
 
-def build_app():
+_LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+
+
+def build_app(host: str = "127.0.0.1"):
     """Return the Starlette app exposing the SSE MCP endpoint."""
+    if host not in _LOOPBACK_HOSTS:
+        mcp.settings.transport_security = TransportSecuritySettings(
+            enable_dns_rebinding_protection=False
+        )
     return mcp.sse_app()

@@ -54,7 +54,7 @@ def _silence_network_logs() -> None:
 
 async def _serve(host: str, port: int) -> None:
     config = uvicorn.Config(
-        build_app(),
+        build_app(host),
         host=host,
         port=port,
         log_config=None,
