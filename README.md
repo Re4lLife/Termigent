@@ -57,39 +57,15 @@ agent@termigent:~$ pwd
 
 ## Connect Claude Desktop
 
-Claude Desktop brokers remote connectors through Anthropic's cloud, so a connector URL cannot reach your loopback address. Bridge the SSE endpoint through `mcp-remote` in the Desktop config instead. This requires Node.js, which provides `npx`.
+**On the local machine** — start `termigent`, 
 
-**On the local machine** — start `termigent`, then add this to `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "termigent": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "http://127.0.0.1:8000/sse"]
-    }
-  }
-}
-```
-
-**On a remote server** — install termigent there and bind it to all interfaces:
-
+**On a remote server** — install termigent and bind to 0.0.0.0:
 ```bash
-termigent --host 0.0.0.0 --port 8000
+termigent --host 0.0.0.0
 ```
 
-Then, on the machine running Claude Desktop, point the bridge at the server:
-
-```json
-{
-  "mcpServers": {
-    "termigent": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "http://SERVER_IP:8000/sse"]
-    }
-  }
-}
-```
+Then, on the machine running Claude Desktop, open settings and add to connectors;
+`http://<host>:<port>/sse`.
 
 
 Restart Claude Desktop after changing its config so it initializes a new MCP session.
